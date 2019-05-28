@@ -3,7 +3,7 @@ version: 0.1
 phases:
   install:
     runtime-versions:
-      nodejs: 7
+      nodejs: 8
   build:
       commands:
         - echo Nothing to do yet
