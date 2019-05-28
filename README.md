@@ -4,6 +4,6 @@ This is the product of an acloud.guru tutorial on serverless architecture.
 It uses AWS and ReactJS
 
 
-## Tehcnologies USed
+## Tehcnologies Used
 Git and Github
 SSH
