@@ -23,8 +23,8 @@ def lambda_handler(event, context):
         
         print "Building portfolio from " + str(location)
 
-        build_bucket = s3.Bucket(location["bucketName"])
         portfolio_bucket = s3.Bucket('portfolio.bos.info')
+        build_bucket = s3.Bucket(location["bucketName"])
         
         portfolio_zip = StringIO.StringIO()
         build_bucket.download_fileobj(location["objectKey"], portfolio_zip)
