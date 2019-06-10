@@ -35,15 +35,41 @@
         <script type="text/babel" data-presets="react">
 
         class NameInput extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    message: {
+                        type: undefined,
+                        body: undefined
+                    }
+                }
+
+                this.buttonClicked = this.buttonClicked.bind(this);
+            }
+
+            buttonClicked(evt){
+                let name = this.refs.nameInput.value;
+
+                this.setState({
+                    message: {
+                        type: name ? "success" : "error",
+                        body: name? "Welcome to React, " + name : "You must enter a name!"
+                    }
+                });
+            }
+
             render() {
+                let msg = this.state.message;
+
                 return (
                     <div>
                         <label>Name: 
-                            <input id="name" type="text"/>
+                            <input ref="nameInput" id="name" type="text"/>
                         </label>
-                        <button id="submit_info">Click me!</button>
+                        <button onClick={this.buttonClicked} id="submit_info">Click me!</button>
 
-                        <MessageBox />
+                        <MessageBox type={msg.type} message={msg.body} />
                     </div>
                 )
             }
@@ -52,8 +78,8 @@
         class MessageBox extends React.Component {
             render() {
                 return (
-                    <div className="messageBox error">
-                        This is the Message!
+                    <div className={"messageBox " + (this.props.type || "hidden")}>
+                        {this.props.message}
                     </div>
                 )
             }
